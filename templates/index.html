@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="col-md-8 offset-md-2 ">
+    <div class="jumbotron bg-secondary mt-3 p-2">
+        <h1 class="display-5 text-center">Add Task</h1>
+        <p class="lead text-center">Add a task here and save it.</p>
+        <hr class="my-3">
+        <div class="container-fluid px-5">
+
+            <form action="task" method="post" autocomplete="off">
+                {% csrf_token %}
+                {{ form.taskTitle|as_crispy_field }}<br>
+                {{ form.taskDesc|as_crispy_field }}
+                <div class="row">
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-success btn-lg my-2">
+                            <i class="fas fa-database"></i> Save</button>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{% url 'list' %}" class="btn btn-primary btn-lg my-2">
+                            <i class="fas fa-stream"> Back To List</i>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
